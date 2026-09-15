@@ -1,311 +1,1053 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Welcome TO Albuquerque Juniors.">
-    <meta name="author" content="BK">
-    <title>ABQ JRs </title>
-    <!-- font icons -->
-    <link rel="stylesheet" href="Juniors/public_html/assets/vendors/themify-icons/css/themify-icons.css">
-    <!-- Bootstrap + LeadMark main styles -->
-	<link rel="stylesheet" href="Juniors/public_html/assets/css/abq.css">
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
+    <meta charset="UTF-8">
+
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+            name="description"
+            content="New Mexico basketball tournaments, leagues, and community events."
+    >
+
+    <title>NM Hoops</title>
+
+    <style>
+        :root {
+            --background: #f4f5f7;
+            --foreground: #111820;
+            --orange: #f04a20;
+            --white: #ffffff;
+            --border: #d9dde2;
+            --gray: #626b75;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--foreground);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+        }
+
+
+        /* TOP EVENT BAR */
+
+        .score-strip {
+            min-height: 38px;
+            background: var(--foreground);
+            color: var(--white);
+            display: flex;
+            align-items: stretch;
+            padding: 0 4vw;
+            font-size: 0.68rem;
+        }
+
+        .score-strip > div {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 0 1.4rem;
+            border-right: 1px solid #ffffff22;
+        }
+
+        .score-strip span {
+            color: #aeb5bd;
+        }
+
+        .score-label {
+            background: var(--orange);
+            font-weight: 900;
+            letter-spacing: 0.12em;
+        }
+
+
+        /* HEADER */
+
+        header {
+            height: 84px;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            padding: 0 4vw;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            z-index: 3;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.75rem;
+            font-weight: 950;
+            letter-spacing: -0.07em;
+            line-height: 0.8;
+        }
+
+        .logo span {
+            background: var(--orange);
+            color: var(--white);
+            padding: 0.42rem 0.36rem;
+            margin-right: 0.18rem;
+        }
+
+        .logo small {
+            display: block;
+            margin-left: 0.6rem;
+            color: #7a828c;
+            font-size: 0.52rem;
+            letter-spacing: 0.13em;
+            line-height: 1.2;
+        }
+
+        header nav {
+            display: flex;
+            gap: 2rem;
+            margin-left: 6vw;
+            font-size: 0.82rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        header nav a:hover {
+            color: var(--orange);
+        }
+
+        .header-button {
+            margin-left: auto;
+            background: var(--foreground);
+            color: var(--white);
+            padding: 0.9rem 1.1rem;
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .header-button:hover {
+            background: var(--orange);
+        }
+
+
+        /* GENERAL TEXT */
+
+        .category {
+            color: var(--orange);
+            text-transform: uppercase;
+            font-size: 0.72rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+        }
+
+
+        /* INTRODUCTION */
+
+        .intro {
+            min-height: 520px;
+            background: var(--white);
+            display: grid;
+            grid-template-columns: 0.65fr 1.35fr;
+            align-items: center;
+            gap: clamp(2rem, 5vw, 5rem);
+            padding: 70px max(5vw, calc((100vw - 1200px) / 2));
+            overflow: hidden;
+        }
+
+        .intro-photo {
+            position: relative;
+            width: 100%;
+            max-height: 390px;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            background: var(--foreground);
+            border-bottom: 8px solid var(--orange);
+            box-shadow: 14px 14px 0 #eef0f2;
+        }
+
+        .intro-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .intro-photo::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                    0deg,
+                    #111820cc 0%,
+                    transparent 42%
+            );
+        }
+
+        .intro-photo span {
+            position: absolute;
+            left: 1rem;
+            bottom: 1rem;
+            z-index: 1;
+            color: var(--white);
+            font-size: 0.72rem;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+        }
+
+        .intro-copy {
+            position: relative;
+            max-width: 720px;
+        }
+
+        .intro-copy h1 {
+            margin: 0.7rem 0 1rem;
+            font-size: clamp(3.4rem, 6vw, 6.5rem);
+            line-height: 0.9;
+            letter-spacing: -0.065em;
+        }
+
+        .intro-copy p {
+            max-width: 680px;
+            color: var(--gray);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .intro-copy > a {
+            display: inline-flex;
+            align-items: center;
+            background: var(--foreground);
+            color: var(--white);
+            padding: 1rem 1.2rem;
+            margin-top: 0.7rem;
+            font-size: 0.76rem;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .intro-copy > a:hover {
+            background: var(--orange);
+        }
+
+
+        /* FEATURED EVENT */
+
+        .featured-wrap,
+        .upcoming {
+            max-width: 1200px;
+            margin: auto;
+            padding: 80px 2rem;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            border-bottom: 4px solid var(--foreground);
+            padding-bottom: 0.7rem;
+        }
+
+        .section-title h2,
+        .upcoming h2 {
+            margin: 0.3rem 0 0;
+            font-size: 2.3rem;
+        }
+
+        .open-pill {
+            background: #dff5e9;
+            color: #137245;
+            padding: 0.6rem 0.8rem;
+            border-radius: 99px;
+            font-size: 0.68rem;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .featured-event {
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            margin-top: 2rem;
+            background: var(--foreground);
+            color: var(--white);
+        }
+
+        .feature-image {
+            position: relative;
+            min-height: 520px;
+            overflow: hidden;
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .feature-image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                    90deg,
+                    transparent 65%,
+                    var(--foreground)
+            );
+        }
+
+        .feature-image > span {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 1;
+            background: var(--orange);
+            padding: 0.55rem 0.7rem;
+            font-size: 0.65rem;
+            font-weight: 900;
+        }
+
+        .feature-info {
+            padding: 2.5rem;
+        }
+
+        .event-type {
+            color: var(--orange);
+            font-size: 0.72rem;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .feature-info h3 {
+            margin: 0.7rem 0 2rem;
+            font-size: 2.7rem;
+            line-height: 0.95;
+            letter-spacing: -0.05em;
+        }
+
+        .event-detail {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-top: 1px solid #ffffff24;
+            padding: 1rem 0;
+        }
+
+        .event-detail > span {
+            width: 22px;
+            font-size: 1rem;
+        }
+
+        .event-detail small,
+        .entry small {
+            display: block;
+            margin-bottom: 0.25rem;
+            color: #8e969e;
+            font-size: 0.58rem;
+            font-weight: 800;
+        }
+
+        .event-detail b {
+            font-size: 0.82rem;
+        }
+
+        .entry {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            border-top: 3px solid var(--orange);
+            margin-top: 0.5rem;
+            padding-top: 1.2rem;
+        }
+
+        .entry strong {
+            font-size: 1.8rem;
+        }
+
+        .entry a {
+            background: var(--orange);
+            padding: 0.9rem 1rem;
+            font-size: 0.7rem;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+
+        /* UPCOMING TOURNAMENTS */
+
+        .upcoming {
+            padding-top: 25px;
+        }
+
+        .upcoming-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            border-bottom: 4px solid var(--foreground);
+            padding-bottom: 1rem;
+        }
+
+        .upcoming-head > p {
+            max-width: 400px;
+            margin: 0;
+            color: #6e7680;
+            line-height: 1.5;
+        }
+
+        .event-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .next-event {
+            display: grid;
+            grid-template-columns: 130px 1fr auto;
+            align-items: center;
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+        }
+
+        .tba-event {
+            border-left: 5px solid var(--orange);
+        }
+
+        .event-date {
+            border-right: 1px solid var(--border);
+            margin-right: 1.5rem;
+        }
+
+        .event-date strong {
+            display: block;
+            font-size: 2rem;
+        }
+
+        .tba-event .event-date strong {
+            font-size: 1.7rem;
+        }
+
+        .event-date span {
+            color: var(--orange);
+            font-size: 0.65rem;
+            font-weight: 900;
+        }
+
+        .next-event h3 {
+            margin: 0.35rem 0;
+            font-size: 1.35rem;
+        }
+
+        .next-event p {
+            margin: 0;
+            color: #6b737c;
+            font-size: 0.82rem;
+        }
+
+        .next-event > a {
+            color: var(--orange);
+            font-size: 0.72rem;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .coming-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .coming-card {
+            background: var(--orange);
+            color: var(--white);
+            padding: 1.6rem;
+        }
+
+        .coming-card > span {
+            color: var(--foreground);
+            font-size: 0.68rem;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .coming-card h3 {
+            margin: 0.7rem 0;
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        .coming-card p {
+            font-size: 0.8rem;
+        }
+
+        .coming-card.dark {
+            background: var(--foreground);
+        }
+
+        .coming-card.dark > span {
+            color: var(--orange);
+        }
+
+        .coming-card.light {
+            background: var(--white);
+            color: var(--foreground);
+            border: 1px solid var(--border);
+        }
+
+        .coming-card.light > span {
+            color: var(--orange);
+        }
+
+        .coming-card.light p {
+            color: #6b737c;
+        }
+
+
+        /* SPONSORS */
+
+        .sponsors {
+            background: var(--white);
+            padding: 80px max(5vw, calc((100vw - 1200px) / 2));
+        }
+
+        .sponsor-heading {
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+            text-align: center;
+        }
+
+        .sponsor-heading h2 {
+            margin: 0.4rem 0;
+            font-size: 2.6rem;
+        }
+
+        .sponsor-heading p {
+            color: #6b737c;
+            line-height: 1.6;
+        }
+
+        .sponsor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .sponsor-logo {
+            height: 190px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .sponsor-logo img {
+            max-width: 78%;
+            max-height: 165px;
+            object-fit: contain;
+        }
+
+        .sponsor-logo:first-child img {
+            width: 280px;
+            max-width: none;
+            max-height: none;
+            transform: translateY(50px);
+        }
+
+        .sponsor-logo:nth-child(2) img {
+            width: 250px;
+            max-width: none;
+            max-height: none;
+        }
+
+        .sponsor-logo:last-child img {
+            width: 250px;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            min-height: 110px;
+            background: #080b10;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem 5vw;
+            font-size: 0.72rem;
+        }
+
+        footer p {
+            color: #858d96;
+        }
+
+        footer > a:last-child {
+            color: var(--orange);
+            font-weight: 900;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+            .score-strip {
+                padding: 0;
+            }
+
+            .score-strip > div:nth-child(n + 3) {
+                display: none;
+            }
+
+            header {
+                height: 72px;
+            }
+
+            .logo small,
+            header nav {
+                display: none;
+            }
+
+            .header-button {
+                font-size: 0.68rem;
+            }
+
+            .intro {
+                grid-template-columns: 1fr;
+                padding: 50px 5vw 70px;
+            }
+
+            .intro-photo {
+                max-width: 460px;
+                max-height: none;
+                aspect-ratio: 16 / 9;
+                box-shadow: 10px 10px 0 #eef0f2;
+            }
+
+            .intro-copy h1 {
+                font-size: 3.6rem;
+            }
+
+            .featured-wrap,
+            .upcoming {
+                padding-inline: 1rem;
+            }
+
+            .featured-event {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-image {
+                min-height: 300px;
+            }
+
+            .feature-image::after {
+                background: linear-gradient(
+                        0deg,
+                        var(--foreground),
+                        transparent 45%
+                );
+            }
+
+            .feature-info {
+                padding: 1.5rem;
+            }
+
+            .upcoming-head {
+                display: block;
+            }
+
+            .upcoming-head > p {
+                margin-top: 1rem;
+            }
+
+            .next-event {
+                grid-template-columns: 90px 1fr;
+            }
+
+            .next-event > a {
+                grid-column: 2;
+                margin-top: 1rem;
+            }
+
+            .event-date strong {
+                font-size: 1.5rem;
+            }
+
+            .coming-grid,
+            .sponsor-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sponsors {
+                padding: 60px 1rem;
+            }
+
+            .sponsor-logo {
+                height: 150px;
+            }
+
+            footer {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
-    <!-- page Navigation -->
-    <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="Juniors/public_html/assets/imgs/logo.jpg" alt="">
-            </a>
-            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#service">Teams We Offer</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#blog">Meet Our Teams</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://bakvolleyball.com/">Beach</a>
-                    </li>
+<body>
+<main>
 
-                </ul>
-            </div>
+    <!-- TOP EVENT BAR -->
+    <div class="score-strip">
+        <div class="score-label">NM HOOPS</div>
+
+        <div>
+            <b>NEXT EVENT</b>
+            <span>OCT 16-18</span>
         </div>
-    </nav>
-    <!-- End Of Second Navigation -->
 
-    <!-- Page Header -->
-    <header class="header">
-        <div class="overlay">
-
-            <h1 class="subtitle">Youth Volleyball Club</h1>
-            <h1 class="title" >ABQ JUNIORS INDOOR</h1>
-            <a href="https://www.instagram.com/abq_juniors/" class="ti-instagram"> Instagram </a>
-            <p></p>
-            <a href="https://www.facebook.com/Abqjunior" class="ti-facebook"> Facebook </a>
-            <p></p>
-            <a href="https://www.youtube.com/@albuquerquejuniors5815" class="ti-youtube"> Youtube </a>
-<p>
-
-</p>
-            <p></p>
-            <p></p>
-            <h1  >TRYOUTS INFORMATION BELOW</h1>
-            <a href="https://albuquerquejrs.volleyballlife.com/tournament/10283?tab=information" class="btn btn-primary py-2 px-4"> TRYOUTS INFORMATION  </a>
-            <p></p>
-            <p></p>
-            <h1  >Group Me</h1>
-            <a href="https://web.groupme.com/join_group/94798622/7iI6jqDB?fbclid=IwAR0cw1OQD-EEyTj_VdPC0jNLtBFFoFQxZM2JzxkhZGT0ep2jdFDNZmMM-Ts" class="btn btn-primary py-2 px-4"> Join our group me  </a>
-
-
-
-
-        </div>  
-        <div class="shape">
-            <svg viewBox="0 0 1500 200">
-                <path d="m 0,240 h 1500.4828 v -71.92164 c 0,0 -286.2763,-81.79324 -743.19024,-81.79324 C 300.37862,86.28512 0,168.07836 0,168.07836 Z"/>
-            </svg>
-        </div>  
-        <div class="mouse-icon"><div class="wheel"></div></div>
-    </header>
-    <!-- End Of Page Header -->
-
-    <!-- About Section -->
-    <section class="section" id="about">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-md-6 pr-md-5 mb-4 mb-md-0">
-                    <h6 class="section-title mb-0">About ABQ Jrs</h6>
-                    <h6 class="section-subtitle mb-4">Youth Indoor Volleyball</h6>
-                    <p >The purpose of the ABQ Juniors  Volleyball program is provide an environment where young women can reach their academic, athletic, and personal potential, both at ABQ Juniors Volleyball
-                        and after high school. We believe that through the values of the program, student athletes will develop the life skills to be successful.</p>
-                    <img src="Juniors/public_html/assets/imgs/jordan.jpg" alt="" class="w-100 mt-3 shadow-sm">
-                </div>
-                <div class="col-md-6 pl-md-5">
-                    <div class="row">
-                        <div class="col-6">
-                            <img src="Juniors/public_html/assets/imgs/17s pic.jpg" alt="" class="w-100 shadow-sm">
-                        </div>
-                        <div class="col-6">
-                            <img src="Juniors/public_html/assets/imgs/14s paso.jpg" alt="" class="w-100 shadow-sm">
-                        </div>
-                        <div class="col-12 mt-4">
-                            <p>In the volleyball program athletes learn what it means to have Wolf  Pride and how important it is to compete with passion.  They are taught mental toughness and how to cope with adversity during matches, practices, as well as in the classroom and off the court.  When an athlete leaves the volleyball program,
-                                they should have developed a sense of personal responsibility and an understanding of the hard work that is necessary for one to be successful in life. </p>
-                            <p>Our role as coaches is to guide student athletes through the development of these values by developing relationships with our student athletes that allow for trust and respect. We must be patient, supportive, and listen but also be clear and honest with our expectations and decisions. We also expect to perform well in matches and push the student athlete out
-                                of their comfort zones to achieve success.  We know the hard work that is necessary to have a successful program and we are dedicated to pushing our athletes to those limits. </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div>
+            <b>YOUTH DIVISION</b>
+            <span>Elementary-Middle School</span>
         </div>
-    </section>
-    <!-- End OF About Section -->
 
-
-    <!-- Service Section -->
-    <section  id="service" class="section pt-0">
-        <div class="container">
-            <h6 class="section-title text-center">Teams We Offer</h6>
-            <h6 class="section-subtitle text-center mb-5 pb-3"> </h6>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card mb-4 mb-md-0">
-                        <div class="card-body">
-                            <small class="text-primary font-weight-bold"></small>
-                            <h5 class="card-title mt-3"> Local <h5>
-                            <p class="mb-0">Just starting volleyball? Want to develop your skills?
-                                Our local program is based on the belief of building a true love for the game. This program is a development program for club volleyball. Beginners, ages 14 and under can be part of a local program to help develop skills and learn how to be a part of a team. Another great part of this program is flexibility. The team(s) will be strictly local. Practice will be held once a week and scrimmages will be held directly after practice!
-                            </p>
-                                <p></p>
-                                <p>
-                                $200 Monthly
-                                Includes Club T-Shirt </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 mb-md-0">
-                        <div class="card-body">
-                            <small class="text-primary font-weight-bold"></small>
-                            <h5 class="card-title mt-3">Regional<h5>
-                            <p class="mb-0">Regional level teams are created to begin travelling to tournaments within the region. The next step to local teams allowing for competition with other clubs. Regional teams will travel as far as Amarillo, Lubbock, El Paso, and Durango.
-                            </p>
-                                <p></p>
-                                <p>
-                                $2000 Per Season December 1st-April 30th
-                                Jersey Package not Included</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 mb-md-0">
-                        <div class="card-body">
-                            <small class="text-primary font-weight-bold"></small>
-                            <h5 class="card-title  mt-3">National<h5>
-                            <p class="mb-0"> National
-                                National programs are the top tier in the club volleyball world. This will be our most competitive teams and teams that travel to National Qualifier tournaments in pursuit of earning a bid to Nationals! These teams play in some regional tournaments and will travel to places like Phoenix, Dallas, Reno, Orlando, Salt Lake City, Irvine, and Denver.
-                            </p>
-                                <p></p>
-                               <p> $3000 Per Season December 1st-April 30th
-                                Jersey Package not Included </p>
-                        </div>
-                    </div>
-                </div>              
-            </div>
+        <div>
+            <b>REGISTRATION</b>
+            <span>NOW OPEN</span>
         </div>
-    </section>
-    <!-- End OF Service Section -->
-
-
-
-
-
-    <!-- Blog Section
-    <section class="section" id="blog">
-        <div class="container">
-            <h6 class="section-title mb-0 text-center">Meet Our Teams</h6>
-            <h6 class="section-subtitle mb-5 text-center">Nike Sponsored Teams</h6>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card border-0 mb-4">
-                        <img src="Juniors/public_html/assets/imgs/14s.jpg" alt="" class="card-img-top w-100">
-                        <div class="card-body">                         
-                            <h6 class="card-title">Nike 14s</h6>
-                            <p>Meet our teams</p>
-                            <a href="" class="btn btn-danger">Team Page</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card border-0 mb-4">
-                        <img src="Juniors/public_html/assets/imgs/17s champs.jpg" alt="" class="card-img-top w-100">
-                        <div class="card-body">                         
-                            <h6 class="card-title"> Nike 17s </h5>
-                            <p>Meet Our Team</p>
-                            <a href="17s.html" class="btn btn-danger">Team Page</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card border-0 mb-4">
-                        <img src="Juniors/public_html/assets/imgs/18s.JPG" alt="" class="card-img-top h-25 w-75">
-                        <div class="card-body">                         
-                            <h6 class="card-title">Nike 18s</h6>
-                            <p>Meet Our Team </p>
-                            <a href="18team.html   "class="btn btn-danger"> Team Page</a>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    End of Blog Section -->
-
-    <!-- Testmonial Section -->
-    <section class="section" id="testmonial">
-        <div class="container">
-            <h6 class="section-title text-center mb-0"> Alumni  </h6>
-            <h6 class="section-subtitle mb-5 text-center"><a href="alumni.html"class="btn btn-danger"> Check out our Alumi</a>
-            </h6>
-
-            <div class="row">
-                <div class="col-md-4 my-3 my-md-0">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="media align-items-center mb-3">
-                                <img class="mr-3" src="Juniors/public_html/assets/imgs/ang.jpg" alt="">
-                                <div class="media-body">
-                                    <h6 class="mt-1 mb-0">Angelina</h6>
-                                    <small class="text-muted mb-0">WTAMU</small>
-                                </div>
-                            </div>
-                            <p class="mb-0">Couldn't have won a national championship without the help of Abq Juniors.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 my-3 my-md-0">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="media align-items-center mb-3">
-                                <img class="mr-3" src="Juniors/public_html/assets/imgs/erinjones.jpg" alt="">
-                                <div class="media-body">
-                                    <h6 class="mt-1 mb-0">Erin Jones</h6>
-                                    <small class="text-muted mb-0">St. Johns</small>
-                                </div>
-                            </div>
-                            <p class="mb-0">Love the coaches and environment, they helped me grow to be who I am today.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 my-3 my-md-0">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="media align-items-center mb-3">
-                                <img class="mr-3" src="Juniors/public_html/assets/imgs/taz.jpg" alt="">
-                                <div class="media-body">
-                                    <h6 class="mt-1 mb-0">Angelyse</h6>
-                                    <small class="text-muted mb-0">Overseas professional</small>
-                                </div>
-                            </div>
-                            <p class="mb-0">Abq juniors training me prepared me for my dream of playing overseas.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End of Testimonial Section -->
-
-
-
-
-
-
-    <!-- Contact Section -->
-
-            <!-- Page Footer -->
-    <div class="footer m-5 text-center dark">
-        <p>*2023
-            ABQ Juniors Volleyball Club</p>
-        <p> 505-350-1958</p>
-        <p> Indoor@albuquerquejuniors.com
-        </p>
     </div>
-            <!-- End of Page Footer -->
-	
-	<!-- core  -->
-    <script src="Juniors/public_html/assets/vendors/jquery/jquery-3.4.1.js"></script>
-    <script src="Juniors/public_html/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
 
-    <!-- bootstrap 3 affix -->
-	<script src="Juniors/public_html/assets/vendors/bootstrap/bootstrap.affix.js"></script>
 
-    <!-- Isotope -->
-    <script src="Juniors/public_html/assets/vendors/isotope/isotope.pkgd.js"></script>
+    <!-- HEADER -->
+    <header>
+        <a class="logo" href="#top">
+            <span>NM</span>
+            HOOPS
+            <small>NEW MEXICO BASKETBALL</small>
+        </a>
 
-    <!-- LeadMark js -->
-    <script src="Juniors/public_html/assets/js/leadmark.js"></script>
+        <nav>
+            <a href="#top">About</a>
+            <a href="#featured">Featured</a>
+            <a href="#upcoming">Upcoming</a>
+            <a href="#sponsors">Sponsors</a>
+        </nav>
 
+        <a
+                class="header-button"
+                href="https://tourneymachine.com/Public/Results/Tournament.aspx?IDTournament=h202609020442217648b63a9b197304c&"
+        >
+            Register a team
+        </a>
+    </header>
+
+
+    <!-- INTRO -->
+    <section class="intro" id="top">
+
+        <!-- Replace this image whenever you want -->
+        <div class="intro-photo">
+            <img
+                    src="pic/hoop logo 2.jpg" height="1254" width="1254"
+                    alt="NM Hoops basketball action"
+            >
+
+            <span>NM HOOPS</span>
+        </div>
+
+        <div class="intro-copy">
+      <span class="category">
+        New Mexico basketball
+      </span>
+
+            <h1>
+                A better home for New Mexico hoops.
+            </h1>
+
+            <p>
+                Powered by Athletix, Rio Rancho Premier, and BAK Basketball,
+                NM Hoops brings players, teams, and fans together through
+                organized tournaments, better competition, and more
+                opportunities for basketball across New Mexico.
+            </p>
+
+            <a href="#featured">
+                See our next tournament →
+            </a>
+        </div>
+    </section>
+
+
+    <!-- FEATURED TOURNAMENT -->
+    <section class="featured-wrap" id="featured">
+
+        <div class="section-title">
+            <div>
+                <span class="category">Coming up next</span>
+                <h2>Featured tournament</h2>
+            </div>
+
+            <span class="open-pill">
+        Registration open
+      </span>
+        </div>
+
+        <article class="featured-event">
+
+            <div class="feature-image">
+                <img
+                        src="pic/hoop%203.jpg"
+                        alt="Competitive basketball game"
+                >
+
+                <span>NM HOOPS FEATURED EVENT</span>
+            </div>
+
+            <div class="feature-info">
+                <p class="event-type">Adult tournament</p>
+
+                <h3>
+                    NM Hoops
+                    <br>
+                    Fall Fallout
+                </h3>
+
+                <div class="event-detail">
+                    <span aria-hidden="true">📅</span>
+
+                    <div>
+                        <small>DATES</small>
+                        <b>October 16th - 18th, 2026</b>
+                    </div>
+                </div>
+
+                <div class="event-detail">
+                    <span aria-hidden="true">📍</span>
+
+                    <div>
+                        <small>LOCATION</small>
+                        <b>Premier Sports Multiplex</b>
+                    </div>
+                </div>
+
+                <div class="event-detail">
+                    <span aria-hidden="true">🏆</span>
+
+                    <div>
+                        <small>FORMAT</small>
+                        <b>Pool play + single elimination</b>
+                    </div>
+                </div>
+
+                <div class="entry">
+          <span>
+            <small>TEAM ENTRY</small>
+            <strong>$275</strong>
+          </span>
+
+                    <a
+                            href="https://tourneymachine.com/Public/Results/Tournament.aspx?IDTournament=h202609020442217648b63a9b197304c&"
+                    >
+                        Register your team →
+                    </a>
+                </div>
+            </div>
+        </article>
+    </section>
+
+
+    <!-- UPCOMING TOURNAMENTS -->
+    <section class="upcoming" id="upcoming">
+
+        <div class="upcoming-head">
+            <div>
+                <span class="category">Mark your calendar</span>
+                <h2>Upcoming tournaments</h2>
+            </div>
+
+            <p>
+                New tournament dates and registration details will be added
+                here as they are confirmed.
+            </p>
+        </div>
+
+        <div class="event-list">
+
+            <article class="next-event">
+                <div class="event-date">
+                    <strong>16–18</strong>
+                    <span>OCT 2026</span>
+                </div>
+
+                <div>
+                    <span class="category">Registration open</span>
+
+                    <h3>NM Hoops Fall Fallout</h3>
+
+                    <p>
+                        Youth Division · Premier Sports Multiplex
+                    </p>
+                </div>
+
+                <a
+                        href="https://tourneymachine.com/Public/Results/Tournament.aspx?IDTournament=h202609020442217648b63a9b197304c&"
+                >
+                    View event →
+                </a>
+            </article>
+
+
+            <article class="next-event tba-event">
+                <div class="event-date">
+                    <strong>TBA</strong>
+                    <span>COMING SOON</span>
+                </div>
+
+                <div>
+                    <span class="category">Next tournament</span>
+
+                    <h3>NM Hoops Tournament Announcement</h3>
+
+                    <p>
+                        Date · Division · Location · Registration details coming soon
+                    </p>
+                </div>
+
+                <a
+                        href="https://tourneymachine.com/Public/Results/Tournament.aspx?IDTournament=h202609020442217648b63a9b197304c&"
+                >
+                    Get updates →
+                </a>
+            </article>
+
+<!--
+            <div class="coming-grid">
+
+                <article class="coming-card">
+                    <span>Upcoming tournament</span>
+
+                    <h3>
+                        Event details
+                        <br>
+                        coming soon.
+                    </h3>
+
+                    <p>
+                        Date, division, and registration will be announced.
+                    </p>
+                </article>
+
+
+                <article class="coming-card dark">
+                    <span>Upcoming tournament</span>
+
+                    <h3>
+                        Event details
+                        <br>
+                        coming soon.
+                    </h3>
+
+                    <p>
+                        Date, division, and registration will be announced.
+                    </p>
+                </article>
+
+
+                <article class="coming-card light">
+                    <span>Upcoming tournament</span>
+
+                    <h3>
+                        Event details
+                        <br>
+                        coming soon.
+                    </h3>
+
+                    <p>
+                        Date, division, and registration will be announced.
+                    </p>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SPONSORS -->
+    <section class="sponsors" id="sponsors">
+
+        <div class="sponsor-heading">
+            <span class="category">Community partners</span>
+
+            <h2>Our sponsors</h2>
+
+            <p>
+                NM Hoops is supported by organizations committed to growing
+                basketball in New Mexico.
+            </p>
+        </div>
+
+        <div class="sponsor-grid">
+
+            <div class="sponsor-logo">
+                <img
+                        src="pic/athlix%202.jpg"
+                        alt="Athletix Multiplex"
+                >
+            </div>
+
+            <div class="sponsor-logo">
+                <img
+                        src="pic/premier%202.jpg"
+                        alt="Rio Rancho Premier Basketball"
+                >
+            </div>
+
+            <div class="sponsor-logo">
+                <img
+                        src="pic/bak%202.jpg"
+                        alt="BAK Basketball"
+                >
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <a class="logo" href="#top">
+            <span>NM</span>
+            HOOPS
+        </a>
+
+        <p>
+            Powered by Athletix · Rio Rancho Premier · BAK Basketball
+        </p>
+
+        <a href="mailto:info@nmhoop.com">
+            info@nmhoop.com
+
+</main>
 </body>
-
 </html>
